@@ -4,6 +4,7 @@
 import sys
 from openpyxl import load_workbook
 
+
 try:
   file_name = str(sys.argv[1])
 except IndexError:
@@ -17,6 +18,11 @@ for sheet in sheet_names:
   current_sheet = workbook.get_sheet_by_name(sheet)
   sheet_comments = []
 
+  # Names the sheet in the output using a value at a cell (A3 in this case)
+  # Change this for how you want to refer to the each sheet.
+  # Another possibility is the sheet title: current_sheet.title
+  sheet_label_reference = current_sheet['A3'].value
+
   for row in current_sheet.iter_rows():
     for cell in row:
 
@@ -28,4 +34,4 @@ for sheet in sheet_names:
           sheet_comments.append(line)
 
   if sheet_comments:
-    print(current_sheet['A3'].value,":", " ".join(str(x) for x in sheet_comments))
+    print(sheet_label_reference,":", " ".join(str(x) for x in sheet_comments))
