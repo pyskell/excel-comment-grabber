@@ -20,8 +20,9 @@ for sheet in sheet_names:
 
   # Names the sheet in the output using a value at a cell (A3 in this case)
   # Change this for how you want to refer to the each sheet.
-  # Another possibility is the sheet title: current_sheet.title
-  sheet_label_reference = current_sheet['A3'].value
+  # Another possibility is to pick a cell that appears on each sheet and has identifying
+  # info for that sheet example: current_sheet['A1'].value
+  sheet_label_reference = current_sheet.title
 
   for row in current_sheet.iter_rows():
     for cell in row:
